@@ -15,7 +15,7 @@ module.exports = {
         allowNull: false,
       },
       quantity: {
-        type: Sequelize.DOUBLE,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
     });
