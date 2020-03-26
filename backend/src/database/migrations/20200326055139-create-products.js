@@ -10,6 +10,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      image: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue:
+          'https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg',
+      },
       price: {
         type: Sequelize.DOUBLE,
         allowNull: false,

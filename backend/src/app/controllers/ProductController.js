@@ -2,7 +2,7 @@ import Product from '../models/Product';
 
 class ProductController {
   async store(req, res) {
-    const { name, price, quantity } = req.body;
+    const { name, image, price, quantity } = req.body;
 
     if (!name) {
       return res.status(400).json({ error: 'Name not provided' });
@@ -20,6 +20,7 @@ class ProductController {
       name,
       price,
       quantity,
+      image,
     });
 
     return res.json(newProduct);
@@ -59,6 +60,7 @@ class ProductController {
 
     product.update({
       name: newProduct.name,
+      image: newProduct.image,
       price: newProduct.price,
       quantity: newProduct.quantity,
     });
