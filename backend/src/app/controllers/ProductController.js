@@ -26,7 +26,7 @@ class ProductController {
   }
 
   async show(req, res) {
-    const { search } = req.body;
+    const { search = {} } = req.body;
 
     if (search.name) {
       const product = await Product.findOne({ where: { search } });
@@ -44,6 +44,39 @@ class ProductController {
 
     const allProducts = await Product.findAll();
     return res.json(allProducts);
+  }
+
+  async update(req, res) {
+    const { id, newProduct } = req.body;
+
+    if (!id) {
+      return res.status(400).json({ error: 'Id not provided' });
+    }
+
+    const product = await Product.findByPk(id);
+    if (!product)
+      return res.status(400).json({ error: 'Product does not exists' });
+
+    product.update({
+      name: newProduct.name,
+      price: newProduct.price,
+      quantity: newProduct.quantity,
+    });
+    product.save();
+
+    return res.json(product);
+  }
+
+  async delete(req, res) {
+    const { id } = req.body;
+
+    if (!id) {
+      return res.status(400).json({ error: 'Id not provided' });
+    }
+
+    const deleteProduct = await Product.destroy({ where: { id } });
+
+    return res.json(deleteProduct);
   }
 }
 

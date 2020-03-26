@@ -8,7 +8,9 @@ routes.get('/', (req, res) => {
   return res.json({ ok: true });
 });
 
-routes.post('/register', ProductController.store);
-routes.post('/show', ProductController.show);
+routes.post('/product/store', ProductController.store);
+routes.post('/product/show', ProductController.show);
+routes.put('/product/update', ProductController.update);
+routes.delete('/product/delete', ProductController.delete);
 
 export default routes;
