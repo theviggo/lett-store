@@ -9,5 +9,6 @@ routes.get('/', (req, res) => {
 });
 
 routes.post('/register', ProductController.store);
+routes.post('/show', ProductController.show);
 
 export default routes;
