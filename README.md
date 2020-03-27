@@ -2,10 +2,10 @@
 Adicione todas as dependências com
 * cd backend
 	* yarn  
-		![image](https://user-images.githubusercontent.com/53899920/77728338-10499480-6fdb-11ea-8668-cdf62ccf926e.png)	
+	![image](https://user-images.githubusercontent.com/53899920/77728350-1770a280-6fdb-11ea-981b-2d56b519ddc6.png)  
 * cd frontend
 	* yarn  
-		![image](https://user-images.githubusercontent.com/53899920/77728350-1770a280-6fdb-11ea-981b-2d56b519ddc6.png)
+	![image](https://user-images.githubusercontent.com/53899920/77728338-10499480-6fdb-11ea-8668-cdf62ccf926e.png)  
 
 * Inicie o banco de dados no docker com o comando
 	* docker run --name lett -e POSTGRES_USER=lett -e POSTGRES_PASSWORD=lett -p 5434:5432 -d postgres  
