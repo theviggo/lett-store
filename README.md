@@ -1,18 +1,27 @@
 # lett-store
 Adicione todas as dependências com
 * cd backend
-	* yarn
+	* yarn  
+		![image](https://user-images.githubusercontent.com/53899920/77728338-10499480-6fdb-11ea-8668-cdf62ccf926e.png)	
 * cd frontend
-	* yarn
+	* yarn  
+		![image](https://user-images.githubusercontent.com/53899920/77728350-1770a280-6fdb-11ea-981b-2d56b519ddc6.png)
 
 * Inicie o banco de dados no docker com o comando
-	* docker run --name lett -e POSTGRES_USER=lett -e POSTGRES_PASSWORD=lett -p 5434:5432 -d postgres
+	* docker run --name lett -e POSTGRES_USER=lett -e POSTGRES_PASSWORD=lett -p 5434:5432 -d postgres  
+		![image](https://user-images.githubusercontent.com/53899920/77728670-bbf2e480-6fdb-11ea-9cbc-8f3d96e9b0d0.png)
 	
 * No backend inicie o processo com:
-	* yarn dev
-	
+	* yarn dev  
+		![image](https://user-images.githubusercontent.com/53899920/77728391-29524580-6fdb-11ea-9f08-d99a0cfdece9.png)
+
 * No frontend inicie o processo com:
-	* yarn start
+	* yarn start  
+		![image](https://user-images.githubusercontent.com/53899920/77728413-37a06180-6fdb-11ea-8c94-82551dd04481.png)
+
+
+
+
 
 O .env não foi adicionado no gitignore para não ter trabalho
 de configurá-lo novamente
