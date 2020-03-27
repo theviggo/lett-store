@@ -49,7 +49,7 @@ export const ProductList = styled.ul`
     }
 
     button {
-      background: ${darken(0.09, '#ffbaba')};
+      background: #ff8c8c;
       color: #333;
       border: 0;
       border-radius: 4px;
@@ -60,7 +60,7 @@ export const ProductList = styled.ul`
       align-items: center;
 
       &:hover {
-        background: ${darken(0.13, '#ffbaba')};
+        background: ${darken(0.05, '#ff8c8c')};
       }
 
       div {

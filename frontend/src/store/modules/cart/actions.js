@@ -11,3 +11,10 @@ export function removeItem(itemId) {
     payload: { itemId },
   };
 }
+
+export function deleteItem(itemId) {
+  return {
+    type: '@cart/DELETE_ITEM',
+    payload: { itemId },
+  };
+}

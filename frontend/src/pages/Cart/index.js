@@ -2,17 +2,43 @@ import React, { useEffect, useState } from 'react';
 
 import { MdAdd, MdRemove, MdClose } from 'react-icons/md';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Container, ProductTable, Total } from './styles';
+import {
+  addItem,
+  removeItem,
+  deleteItem,
+} from '../../store/modules/cart/actions';
 
 export default function Cart() {
   const cart = useSelector(state => state.cart);
+  const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    let totalValue = 0;
+    cart.forEach(i => {
+      totalValue += i.amount * i.price;
+    });
+    setTotal(totalValue);
+  }, [cart]);
 
   const formatter = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   });
+
+  function handleAddItem(item) {
+    dispatch(addItem(item));
+  }
+
+  function handleRemoveItem(id) {
+    dispatch(removeItem(id));
+  }
+
+  function handleDeleteItem(id) {
+    dispatch(deleteItem(id));
+  }
 
   return (
     <Container>
@@ -29,32 +55,52 @@ export default function Cart() {
         {cart
           ? cart.map(i => (
               <tbody>
-                <td>
-                  <img src={i.image} alt={i.name} />
-                </td>
-                <td>
-                  <strong>{i.name}</strong>
-                  <span>{formatter.format(i.price)}</span>
-                </td>
-                <td>
-                  <div>
-                    <button type="button">
-                      <MdRemove size={20} color="#ff8c8c" />
+                <tr>
+                  <td>
+                    <img src={i.image} alt={i.name} />
+                  </td>
+                  <td>
+                    <strong>{i.name}</strong>
+                    <span>{formatter.format(i.price)}</span>
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleRemoveItem(i.id);
+                      }}
+                      disabled={i.amount === 0}
+                    >
+                      <MdRemove
+                        size={20}
+                        color={i.amount === 0 ? '#ddd' : '#ff8c8c'}
+                      />
                     </button>
-                    <input type="number" readOnly value={1} />
-                    <button type="button">
+                    <input type="number" readOnly value={i.amount} />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleAddItem(i);
+                      }}
+                    >
                       <MdAdd size={20} color="#ff8c8c" />
                     </button>
-                  </div>
-                </td>
-                <td>
-                  <strong>R$258,80</strong>
-                </td>
-                <td>
-                  <button type="button">
-                    <MdClose size={20} color="#ff8c8c" />
-                  </button>
-                </td>
+                  </td>
+                  <td>
+                    <strong>{formatter.format(i.price * i.amount)}</strong>
+                  </td>
+                  <td>
+                    <button type="button">
+                      <MdClose
+                        size={20}
+                        color="#ff8c8c"
+                        onClick={() => {
+                          handleDeleteItem(i.id);
+                        }}
+                      />
+                    </button>
+                  </td>
+                </tr>
               </tbody>
             ))
           : null}
@@ -63,7 +109,7 @@ export default function Cart() {
         <button type="button">Finalizar pedido</button>
         <Total>
           <span>TOTAL</span>
-          <strong>R$312321,23</strong>
+          <strong>{formatter.format(total)}</strong>
         </Total>
       </footer>
     </Container>
