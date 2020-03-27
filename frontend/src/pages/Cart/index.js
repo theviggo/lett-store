@@ -54,7 +54,7 @@ export default function Cart() {
         </thead>
         {cart
           ? cart.map(i => (
-              <tbody>
+              <tbody key={i.id}>
                 <tr>
                   <td>
                     <img src={i.image} alt={i.name} />
