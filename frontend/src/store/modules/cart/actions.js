@@ -1,7 +1,7 @@
-export function addItem(itemId) {
+export function addItem(item) {
   return {
     type: '@cart/ADD_ITEM',
-    payload: { itemId },
+    payload: { item },
   };
 }
 

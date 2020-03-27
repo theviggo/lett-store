@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import api from '../../services/api';
-import { productRequest } from '../../store/modules/products/actions';
+import { MdAddShoppingCart } from 'react-icons/md';
 
-// import { Container } from './styles';
+import api from '../../services/api';
+
+import { productRequest } from '../../store/modules/products/actions';
+import { addItem } from '../../store/modules/cart/actions';
+
+import { ProductList } from './styles';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -17,6 +21,39 @@ export default function Home() {
     }
     getProducts();
   }, [dispatch]);
-  console.log(products);
-  return <h1>{products ? products.map(i => <p>{i.name}</p>) : null}</h1>;
+
+  const formatter = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
+
+  function handleAddItem(item) {
+    dispatch(addItem(item));
+  }
+
+  return (
+    <ProductList>
+      {products
+        ? products.map(i => (
+            <li key={i.id}>
+              <img src={i.image} alt={i.name} />
+              <strong>{i.name}</strong>
+              <span>{formatter.format(i.price)}</span>
+
+              <button
+                type="button"
+                onClick={() => {
+                  handleAddItem(i);
+                }}
+              >
+                <div>
+                  <MdAddShoppingCart size={16} color="#fff" /> {i.quantity}
+                </div>
+                <span>Adicionar ao carrinho</span>
+              </button>
+            </li>
+          ))
+        : null}
+    </ProductList>
+  );
 }

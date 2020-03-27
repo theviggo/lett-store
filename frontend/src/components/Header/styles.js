@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { darken } from 'polished';
 
 export const Container = styled.div`
-  background: #232020;
+  background: #fff;
   height: 100px;
   display: flex;
   justify-content: space-around;
@@ -11,8 +12,8 @@ export const Container = styled.div`
   font-family: Montserrat, sans-serif;
 
   h1 {
-    font-weight: 200;
-    color: #7fcd91;
+    font-weight: 400;
+    color: ${darken(0.09, '#ffbaba')};
   }
 
   a {
@@ -36,12 +37,12 @@ export const Cart = styled(Link)`
 
     strong {
       display: block;
-      color: #706c61;
+      color: ${darken(0.09, '#ffbaba')};
     }
 
     span {
       font-size: 12px;
-      color: #fff;
+      color: ${darken(0.09, '#ccc')};
     }
   }
 `;

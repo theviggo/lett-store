@@ -2,9 +2,11 @@ import React from 'react';
 
 import { MdShoppingBasket } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Container, Cart } from './styles';
 
 export default function Header() {
+  const cart = useSelector(state => state.cart);
   return (
     <Container>
       <Link to="/">
@@ -13,9 +15,13 @@ export default function Header() {
       <Cart to="/cart">
         <div>
           <strong>Carrinho</strong>
-          <span>3 items</span>
+          <span>
+            {cart.length === 0
+              ? `Não há items no seu carrinho`
+              : `${cart.length} items`}
+          </span>
         </div>
-        <MdShoppingBasket size={36} color="#706c61" />
+        <MdShoppingBasket size={36} color="#ffbaba" />
       </Cart>
     </Container>
   );
