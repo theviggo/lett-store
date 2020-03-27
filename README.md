@@ -19,12 +19,13 @@ Adicione todas as dependências com
 	* yarn start  
 		![image](https://user-images.githubusercontent.com/53899920/77728413-37a06180-6fdb-11ea-8c94-82551dd04481.png)
 
-
-
-
-
 O .env não foi adicionado no gitignore para não ter trabalho
 de configurá-lo novamente
+
+### Caso use Insomnia, eu exportei o workspace para
+https://lett-prova.s3.amazonaws.com/Insomnia_2020-03-27.json
+
+## Enfim, a API:
 
 Na api existem as seguintes rotas:
 
